@@ -27,6 +27,7 @@
                 {
                     "type": "git",
                     "url": "https://github.com/paynebc/tunefish/",
+                    "tag": "RELEASE_4_2_0",
                     "commit": "d56812e8d99d8ce2753deb6d631190c9a1223423"
                 },
                 {
