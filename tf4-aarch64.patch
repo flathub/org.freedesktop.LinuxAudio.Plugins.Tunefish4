@@ -1,0 +1,40 @@
+diff --git a/src/tunefish4/Source/runtime/runtime.hpp b/src/tunefish4/Source/runtime/runtime.hpp
+index 6cff31c..868154e 100644
+--- a/src/tunefish4/Source/runtime/runtime.hpp
++++ b/src/tunefish4/Source/runtime/runtime.hpp
+@@ -22,8 +22,6 @@
+ #ifndef RUNTIME_HPP
+ #define RUNTIME_HPP
+ 
+-#include <xmmintrin.h>
+-
+ // global constants (don't change into
+ // constants, it's a size thing!)
+ 
+@@ -121,7 +119,7 @@ eFORCEINLINE eInt eNsMod(eInt x, eInt y)
+ // default version. must be called explicitly.
+ eFORCEINLINE eInt eFtoL(eF32 x)
+ {
+-    return _mm_cvtt_ss2si(_mm_load_ss(&x));
++    return (eInt)x;
+ }
+ 
+ eINLINE void eUndenormalise(eF32 &sample)
+diff --git a/src/tunefish4/Source/runtime/simd.hpp b/src/tunefish4/Source/runtime/simd.hpp
+index a2bd488..fdecae3 100644
+--- a/src/tunefish4/Source/runtime/simd.hpp
++++ b/src/tunefish4/Source/runtime/simd.hpp
+@@ -22,9 +22,10 @@
+ #ifndef SIMD_HPP
+ #define SIMD_HPP
+ 
+-#include <xmmintrin.h>
+-#include <emmintrin.h>
+-#include <smmintrin.h>
++#define SIMDE_ENABLE_NATIVE_ALIASES 1
++#include "simde/x86/sse.h"
++#include "simde/x86/sse2.h"
++#include "simde/x86/sse4.1.h"
+ 
+ #define eSimdSelect(v, i0, i1, i2, i3)              _mm_shuffle_ps(v, v, _MM_SHUFFLE(i0, i1, i2, i3))
+ #define eSimdShuffle(v0, v1, i00, i01, i10, i11)    _mm_shuffle_ps(v0, v1, _MM_SHUFFLE(i00, i01, i10, i11))
