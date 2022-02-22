@@ -13,8 +13,14 @@
         {
             "name": "simde",
             "buildsystem": "meson",
+            "only-arches": [
+                "aarch64"
+            ],
             "config-opts": [
                 "-Dtests=false"
+            ],
+            "cleanup": [
+                "*"
             ],
             "sources": [
                 {
@@ -28,14 +34,19 @@
             "name": "tunefish4",
             "buildsystem": "simple",
             "build-options": {
-                "cxxflags": "-I${FLATPAK_DEST}/include"
+                "arch": {
+                    "aarch64": {
+                        "cxxflags": "-I${FLATPAK_DEST}/include"
+                    }
+                }
             },
             "build-commands": [
                 "make -C src/tunefish4/Builds/LinuxMakefile"
             ],
             "post-install": [
-                "install -Dm755 -t ${FLATPAK_DEST}/lxvst src/tunefish4/Builds/LinuxMakefile/build/Tunefish4.so",
-                "strip ${FLATPAK_DEST}/lxvst/*.so",
+                "ln -sf vst $FLATPAK_DEST/lxvst",
+                "install -Dm755 -t ${FLATPAK_DEST}/vst src/tunefish4/Builds/LinuxMakefile/build/Tunefish4.so",
+                "strip ${FLATPAK_DEST}/vst/*.so",
                 "install -Dm644 -t ${FLATPAK_DEST}/share/licenses/tunefish4 COPYING",
                 "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo org.freedesktop.LinuxAudio.Plugins.Tunefish4.metainfo.xml",
                 "appstream-compose --basename=org.freedesktop.LinuxAudio.Plugins.Tunefish4 --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.LinuxAudio.Plugins.Tunefish4"
@@ -57,6 +68,9 @@
                 },
                 {
                     "type": "patch",
+                    "only-arches": [
+                        "aarch64"
+                    ],
                     "path": "tf4-aarch64.patch"
                 },
                 {
