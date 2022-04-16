@@ -17,6 +17,7 @@
                 "aarch64"
             ],
             "config-opts": [
+                "-Dbuildtype=release",
                 "-Dtests=false"
             ],
             "cleanup": [
