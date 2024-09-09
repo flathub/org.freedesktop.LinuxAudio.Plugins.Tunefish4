@@ -1,11 +1,10 @@
 {
     "id": "org.freedesktop.LinuxAudio.Plugins.Tunefish4",
     "runtime": "org.freedesktop.LinuxAudio.BaseExtension",
-    "sdk": "org.freedesktop.Sdk//23.08",
+    "sdk": "org.freedesktop.Sdk//24.08",
     "runtime-version": "stable",
     "build-extension": true,
-    "appstream-compose": false,
-    "branch": "23.08",
+    "branch": "24.08",
     "build-options": {
         "prefix": "/app/extensions/Plugins/Tunefish4"
     },
@@ -48,8 +47,7 @@
                 "install -Dm755 -t ${FLATPAK_DEST}/vst src/tunefish4/Builds/LinuxMakefile/build/Tunefish4.so",
                 "strip ${FLATPAK_DEST}/vst/*.so",
                 "install -Dm644 -t ${FLATPAK_DEST}/share/licenses/tunefish4 COPYING",
-                "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo org.freedesktop.LinuxAudio.Plugins.Tunefish4.metainfo.xml",
-                "appstream-compose --basename=org.freedesktop.LinuxAudio.Plugins.Tunefish4 --prefix=${FLATPAK_DEST} --origin=flatpak org.freedesktop.LinuxAudio.Plugins.Tunefish4"
+                "install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo org.freedesktop.LinuxAudio.Plugins.Tunefish4.metainfo.xml"
             ],
             "sources": [
                 {
